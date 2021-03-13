@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `people` (`email` TEXT, `gender` TEXT, `phone` TEXT, `cell` TEXT, PRIMARY KEY (`email`))');
+            'CREATE TABLE IF NOT EXISTS `people` (`email` TEXT, `gender` TEXT, `phone` TEXT, `cell` TEXT, `image_url` TEXT, `initial` TEXT, `full_name` TEXT, `is_updated` INTEGER NOT NULL, `connection_status` TEXT NOT NULL, `updated_at` INTEGER NOT NULL, PRIMARY KEY (`email`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -104,7 +104,13 @@ class _$PeopleDao extends PeopleDao {
                   'email': item.email,
                   'gender': item.gender,
                   'phone': item.phone,
-                  'cell': item.cell
+                  'cell': item.cell,
+                  'image_url': item.imageUrl,
+                  'initial': item.initial,
+                  'full_name': item.fullName,
+                  'is_updated': item.isUpdated ? 1 : 0,
+                  'connection_status': item.connectionStatus,
+                  'updated_at': item.updatedAt
                 },
             changeListener),
         _peopleUpdateAdapter = UpdateAdapter(
@@ -115,7 +121,13 @@ class _$PeopleDao extends PeopleDao {
                   'email': item.email,
                   'gender': item.gender,
                   'phone': item.phone,
-                  'cell': item.cell
+                  'cell': item.cell,
+                  'image_url': item.imageUrl,
+                  'initial': item.initial,
+                  'full_name': item.fullName,
+                  'is_updated': item.isUpdated ? 1 : 0,
+                  'connection_status': item.connectionStatus,
+                  'updated_at': item.updatedAt
                 },
             changeListener);
 
@@ -129,7 +141,13 @@ class _$PeopleDao extends PeopleDao {
       email: row['email'] as String,
       gender: row['gender'] as String,
       phone: row['phone'] as String,
-      cell: row['cell'] as String);
+      cell: row['cell'] as String,
+      fullName: row['full_name'] as String,
+      initial: row['initial'] as String,
+      imageUrl: row['image_url'] as String,
+      isUpdated: (row['is_updated'] as int) != 0,
+      updatedAt: row['updated_at'] as int,
+      connectionStatus: row['connection_status'] as String);
 
   final InsertionAdapter<People> _peopleInsertionAdapter;
 

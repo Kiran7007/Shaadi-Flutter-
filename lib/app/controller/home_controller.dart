@@ -6,24 +6,26 @@ import 'package:meta/meta.dart';
 class HomeController extends GetxController {
   final PeopleRepository repository;
 
-  var _peopleList = List<People>().obs;
+  var _peopleList = RxList<People>();
   get peopleList => this._peopleList.value;
   set peopleList(value) => this._peopleList.value = value;
 
   HomeController({@required this.repository}) : assert(repository != null) {
-    repository.peopleDao.fetchPeoples().listen(
+    repository.fetchLocalData().listen(
       (value) {
         print('HomeController fetching local data $value');
-        this._peopleList = value;
+        this._peopleList.value = value;
       },
     );
   }
 
   getAll() {
     print('HomeController method called');
-    if (_peopleList.value.isEmpty) {
+    if (peopleList.length < 1) {
       print('HomeController fetching remote data');
-      repository.fetchRemoteData();
+      repository.fetchRemoteData().then((data) {
+        repository.setAll(data);
+      });
     }
   }
 }

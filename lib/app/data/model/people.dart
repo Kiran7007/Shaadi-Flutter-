@@ -10,39 +10,55 @@ class People {
 
   @ColumnInfo(name: 'gender')
   String gender;
-  
+
   @ColumnInfo(name: 'phone')
   String phone;
-  
+
   @ColumnInfo(name: 'cell')
   String cell;
 
-  @ignore
-  Name name;
+  @ColumnInfo(name: 'image_url')
+  String imageUrl;
+
+  @ColumnInfo(name: 'initial', nullable: true)
+  String initial;
+
+  @ColumnInfo(name: 'full_name', nullable: true)
+  String fullName;
+
+  @ColumnInfo(name: 'is_updated', nullable: false)
+  bool isUpdated = false;
+
+  @ColumnInfo(name: 'connection_status', nullable: false)
+  String connectionStatus = "";
+
+  @ColumnInfo(name: 'updated_at', nullable: false)
+  int updatedAt = 0;
 
   @ignore
   Dob dob;
 
   @ignore
-  Picture picture;
-
-  @ignore
   Location location;
 
-  @ignore
-  Connection connection;
-
-  People({this.email, this.gender, this.phone, this.cell});
+  People({this.email, this.gender, this.phone, this.cell, this.fullName, this.initial, this.imageUrl, this.isUpdated, this.updatedAt, this.connectionStatus});
 
   People.fromJson(Map<String, dynamic> json) {
     this.email = json['email'];
     this.gender = json['gender'];
     this.phone = json['phone'];
     this.cell = json['cell'];
-    this.name = Name.fromJson(json['name']);
+    var nameObj = Name.fromJson(json['name']);
+    this.fullName = '${nameObj.first} ${nameObj.last}';
+    this.initial = nameObj.title;
     this.dob = Dob.fromJson(json['dob']);
-    this.picture = Picture.fromJson(json['picture']);
+    this.imageUrl = Picture.fromJson(json['picture']).large;
     this.location = Location.fromJson(json['location']);
+  }
+
+  @override
+  String toString() {
+    return 'Email : $email, FullName : $initial $fullName, Image Url: $imageUrl';
   }
 }
 
@@ -55,6 +71,12 @@ class Name {
     this.first = json['first'];
     this.title = json['title'];
     this.last = json['last'];
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'Initial : $title, First : $first, Last :  $last';
   }
 }
 

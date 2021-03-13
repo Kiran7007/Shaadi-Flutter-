@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shaadi/app/data/model/people.dart';
 import 'package:flutter_shaadi/app/ui/widget/avatar_image.dart';
+import 'package:flutter_shaadi/app/ui/widget/card_button.dart';
 
 class PeopleCard extends StatelessWidget {
   final People people;
@@ -23,8 +24,16 @@ class PeopleCard extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Decline'),
-              Text('Decline'),
+              CardButton(
+                  text: 'Decline',
+                  icon: Icons.accessible_forward_sharp,
+                  color: Colors.redAccent,
+                  onPress: () => {}),
+              CardButton(
+                  text: 'Accept',
+                  icon: Icons.deck_rounded,
+                  color: Colors.green,
+                  onPress: () => {}),
             ],
           )
         ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shaadi/app/data/db/people_dao.dart';
 import 'package:flutter_shaadi/app/data/model/people.dart';
-import 'package:flutter_shaadi/app/data/provider.dart/api.dart';
+import 'package:flutter_shaadi/app/data/provider/api.dart';
 import 'package:get/get.dart';
 
 class PeopleRepository {
@@ -17,5 +17,9 @@ class PeopleRepository {
   setAll(List<People> list) async {
     print("Storing List : $list");
     await Get.find<PeopleDao>().insertAll(list);
+  }
+
+  void update(People people) async{
+    Get.find<PeopleDao>().updateData(people);
   }
 }

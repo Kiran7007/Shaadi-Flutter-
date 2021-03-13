@@ -24,14 +24,16 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: CircleAvatar(
-        minRadius: 10,
-        backgroundColor: Colors.grey[100],
-        child:
-            url?.isEmpty ?? false ? Text(getInitials(name)) : ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(url,),
-            ),
+      child: Container(
+        width: 85,
+        height: 85,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.grey),
+          image: DecorationImage(
+              image: NetworkImage(this.url),
+              fit: BoxFit.fill),
+        ),
       ),
     );
   }

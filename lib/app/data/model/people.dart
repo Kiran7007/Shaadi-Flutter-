@@ -35,30 +35,44 @@ class People {
   @ColumnInfo(name: 'updated_at', nullable: false)
   int updatedAt = 0;
 
-  @ignore
-  Dob dob;
+  @ColumnInfo(name: 'age', nullable: false)
+  int age;
 
-  @ignore
-  Location location;
+  @ColumnInfo(name: 'address', nullable: false)
+  String address;
 
-  People({this.email, this.gender, this.phone, this.cell, this.fullName, this.initial, this.imageUrl, this.isUpdated, this.updatedAt, this.connectionStatus});
+  People(
+      {this.email,
+      this.gender,
+      this.phone,
+      this.cell,
+      this.fullName,
+      this.initial,
+      this.imageUrl,
+      this.isUpdated,
+      this.updatedAt,
+      this.connectionStatus,
+      this.age, this.address});
 
   People.fromJson(Map<String, dynamic> json) {
     this.email = json['email'];
     this.gender = json['gender'];
     this.phone = json['phone'];
     this.cell = json['cell'];
+    this.age = Dob.fromJson(json['dob']).age;
+    this.imageUrl = Picture.fromJson(json['picture']).large;
+
     var nameObj = Name.fromJson(json['name']);
     this.fullName = '${nameObj.first} ${nameObj.last}';
     this.initial = nameObj.title;
-    this.dob = Dob.fromJson(json['dob']);
-    this.imageUrl = Picture.fromJson(json['picture']).large;
-    this.location = Location.fromJson(json['location']);
+
+    final location = Location.fromJson(json['location']);
+    this.address = '${location.city}, ${location.state}, ${location.country}';
   }
 
   @override
   String toString() {
-    return 'Email : $email, FullName : $initial $fullName, Image Url: $imageUrl';
+    return 'Email : $email, FullName : $initial $fullName, Address: $address';
   }
 }
 

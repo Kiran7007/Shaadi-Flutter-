@@ -1,16 +1,22 @@
-# flutter_shaadi
+# Shaadi
+This repository contains Flutter Shaadi app which is implemeted using Getx pattern and some third party dependencies. 
 
-A new Flutter project.
+<p align="center">
+  <img src="https://github.com/Kiran7007/Shaadi/blob/master/screenshots/Screen_1.jpg" width="250">
+  <img src="https://github.com/Kiran7007/Shaadi/blob/master/screenshots/Screen_2.jpg" width="250">
+</p>
+<br>
 
-## Getting Started
+#### The app has following packages:
 
-This project is a starting point for a Flutter application.
+* **bindings**: It is resposible for providing the dependency to the controller.
+* **controller**: It is responsible for business logics and comminucation with data layer..
+* **data**: This package provides the data either from network or from local database.
+* **routes**: It holds the navigation pages and thier dependencies.
+* **ui**: It contais all pages and widgets.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Library reference resources:
+* Getx: https://pub.dev/packages/get
+* Http: https://pub.dev/packages/http
+* Floor: https://pub.dev/packages/floor
+* Intl: https://pub.dev/packages/intl

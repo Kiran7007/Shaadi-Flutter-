@@ -1,9 +1,8 @@
-# Shaadi
+# Shaadi Flutter
 This repository contains Flutter Shaadi app which is implemeted using Getx pattern and some third party dependencies. 
 
 <p align="center">
-  <img src="https://github.com/Kiran7007/Shaadi/blob/master/screenshots/Screen_1.jpg" width="250">
-  <img src="https://github.com/Kiran7007/Shaadi/blob/master/screenshots/Screen_2.jpg" width="250">
+  <img src="https://drive.google.com/file/d/1jeiQLXjYqFQkVFHxLcy3vcDIEtdTZyDh/view?usp=sharing" width="250">
 </p>
 <br>
 

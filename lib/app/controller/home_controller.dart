@@ -32,7 +32,7 @@ class HomeController extends GetxController {
   updatePeople(People people, bool isAccepted) {
     people.isUpdated = true;
     people.connectionStatus = isAccepted ? 'accepted' : 'declined';
-    people.updatedAt = DateTime.now().millisecond;
+    people.updatedAt = DateTime.now().millisecondsSinceEpoch;
     repository.update(people);
   }
 }

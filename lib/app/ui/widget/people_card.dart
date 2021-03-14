@@ -10,9 +10,11 @@ class PeopleCard extends StatelessWidget {
   final HomeController controller;
   PeopleCard({this.people, this.controller});
 
-  String _getStatusMessage(bool isAccpeted){
-      String message = people.connectionStatus == 'accepted' ? 'Accepted' : 'Declined';
-      return '$message on ${DateFormat.yMMMd().format(DateTime.now())}';
+  String _getStatusMessage(bool isAccpeted, int time) {
+    print("Time : $time");
+    String message =
+        people.connectionStatus == 'accepted' ? 'Accepted' : 'Declined';
+    return '$message on ${DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(time))}';
   }
 
   @override
@@ -24,7 +26,7 @@ class PeopleCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         child: Column(
           children: [
-            Avatar(url: people.imageUrl, name: people.fullName),
+            Avatar(url: people.imageUrl),
             ListTile(
               title: Text(
                 '${people.initial}. ${people.fullName}\n(${people.gender[0].toUpperCase()} - ${people.age})',
@@ -55,7 +57,7 @@ class PeopleCard extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Text(
-                        _getStatusMessage(people.isUpdated),
+                        _getStatusMessage(people.isUpdated, people.updatedAt),
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
